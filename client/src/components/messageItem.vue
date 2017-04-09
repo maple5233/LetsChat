@@ -10,7 +10,6 @@
                     </p>
                     <p class="text">{{ message.text }}</p>
                 </div>
-<!--                 <img :src="message.headImgSrc" height="40" width="40" v-show="message.isSelf"> -->
             </div>
         </div>
     </div>

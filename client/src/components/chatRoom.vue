@@ -6,7 +6,7 @@
                 <span>聊天室列表</span>
             </div>
             <div v-for="(room,index) of rooms" :class="{ 'selected' : roomSelected === room._id }"
-            class="text item has-transition" @click="chooseRoom(room._id)" :key="room._id" >
+            class="text item has-transition" @click="chooseRoom(room._id , room.name)" :key="room._id" >
                 {{ room.name }}
             </div>
             <el-button class="add-room" icon="plus" type="primary"  @click="roomDialogVisible = true">
@@ -18,7 +18,7 @@
         <el-card class="box-card chat-card">
             <!-- 标题 -->
             <div slot="header" class="clearfix card-header">
-                <span>聊天内容</span>
+                <span>{{ roomName }}</span>
             </div>
             <!-- 已有内容 -->
             <div class="messages-box" id="messages" ref="messagesList">
@@ -63,6 +63,7 @@
                 formLabelWidth: '120px',
                 roomSelected: 1,
                 roomDialogVisible: false,
+                roomName: '异次元聊天室',
                 rooms: [{
                     _id: 1,
                     name: '聊天室1'
@@ -110,8 +111,9 @@
             }
         },
         methods: {
-            chooseRoom(o) {
-                this.roomSelected = o;
+            chooseRoom(id, name) {
+                this.roomSelected = id;
+                this.roomName = name;
             },
             addChatRoom() {
                 if (this.newChatRoom.name.length === 0) {
