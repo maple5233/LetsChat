@@ -1,11 +1,13 @@
 <template>
     <div id="app">
         <header-menu></header-menu>
+        <footer-info></footer-info>
     </div>
 </template>
 
 <script>
-    import headerMenu from './compoments/headerMenu.vue'
+    import headerMenu from './compoments/headerMenu.vue';
+    import footerInfo from './compoments/footerInfo.vue';
 
     export default {
         data () {
@@ -14,8 +16,8 @@
         methods: {
         },
         components: {
-            headerMenu
-            // footerInfo
+            headerMenu,
+            footerInfo
         }
     }
 </script>
