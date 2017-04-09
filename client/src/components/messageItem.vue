@@ -5,7 +5,7 @@
                 <img :src="message.headImgSrc" height="40" width="40">
                 <div class="content">
                     <p class="title">
-                        <span class="author">{{ message.author }}</span>
+                        <span class="author">{{ message.author }}</span> ---
                         <span class="time">{{ message.createTime | time }}</span>
                     </p>
                     <p class="text">{{ message.text }}</p>
@@ -19,9 +19,7 @@
 <script>
     export default {
         data () {
-            return {
-
-            }
+            return {}
         },
         props: {
             message: Object

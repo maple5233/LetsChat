@@ -5,9 +5,9 @@
             <div slot="header" class="clearfix card-header">
                 <span>聊天室列表</span>
             </div>
-            <div v-for="o in 4" :class="{ 'selected' : roomSelected === o }"
-            class="text item has-transition" @click="chooseRoom(o)">
-                {{'聊天室' + o }}
+            <div v-for="(room,index) of rooms" :class="{ 'selected' : roomSelected === room._id }"
+            class="text item has-transition" @click="chooseRoom(room._id)" :key="room._id" >
+                {{ room.name }}
             </div>
             <el-button class="add-room" icon="plus" type="primary"  @click="roomDialogVisible = true">
                 创建新的
@@ -21,7 +21,7 @@
                 <span>聊天内容</span>
             </div>
             <!-- 已有内容 -->
-            <div class="messages-box">
+            <div class="messages-box" id="messages" ref="messagesList">
                 <message-item v-for="(message,index) of messages" :key="message._id"
                 :message="message"></message-item>
             </div>
@@ -33,19 +33,22 @@
                 </el-form-item>
             </el-form>
 
-            <el-button class="send-message" icon="caret-right" type="primary">发送</el-button>
+            <el-button class="send-message" icon="caret-right"
+             @click="addMessage()" type="primary">发送</el-button>
         </el-card>
 
         <!-- 创建聊天室对话框 -->
         <el-dialog title="创建聊天室" v-model="roomDialogVisible">
-            <el-form :model="newChatRoom">
+            <el-form :model="newChatRoom" ref="newChatRoomFrom">
                 <el-form-item label="聊天室名称" :label-width="formLabelWidth">
                     <el-input v-model="newChatRoom.name" auto-complete="off"></el-input>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="roomDialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="addChatRoom()">确 定</el-button>
+                <el-button type="primary" @keydown.enter="addChatRoom()" @click="addChatRoom()">
+                    确 定
+                </el-button>
             </div>
         </el-dialog>
     </div>
@@ -60,12 +63,22 @@
                 formLabelWidth: '120px',
                 roomSelected: 1,
                 roomDialogVisible: false,
+                rooms: [{
+                    _id: 1,
+                    name: '聊天室1'
+                },{
+                    _id: 2,
+                    name: '聊天室2'
+                },{
+                    _id: 3,
+                    name: '聊天室3'
+                }],
                 newChatRoom: {
+                    _id: null,
                     name: null
                 },
                 newMessage: {
-                    text: null,
-                    createTime: null
+                    text: null
                 },
                 rules: {
                     text: [{
@@ -101,11 +114,51 @@
                 this.roomSelected = o;
             },
             addChatRoom() {
+                if (this.newChatRoom.name.length === 0) {
+                    this.roomDialogVisible = false;
+                    return;
+                }
+                this.rooms.push({
+                    name: this.newChatRoom.name,
+                    _id: 100 * Math.random()
+                });
+                this.newChatRoom.name = '';
                 this.roomDialogVisible = false;
+            },
+            addMessage() {
+                this.$refs.newMessageFrom.validate((valid) => {
+                    if (valid) {
+                        this.messages.push({
+                            _id: 100 * Math.random(),
+                            author: '洪继耀',
+                            isSelf: true,
+                            createTime: new Date(),
+                            headImgSrc: 'https://vuefe.cn/images/logo.png',
+                            text: this.newMessage.text
+                        })
+                    } else {
+                        this.$message.error('您的输入有误');
+                    }
+                    this.$refs.newMessageFrom.resetFields();
+                });
             }
         },
         components: {
             messageItem
+        },
+        watch: {
+            messages() {
+                /*
+                    自动滚到底部
+                    因为vue视图渲染和取DOM之间有一个时间差，导致取DOM的时候，元素还没有渲染出来
+                    所以要使用$nextTick 来保证先渲染完dom 再执行
+                    否则取到的scrollHeight将不足 导致永远显示倒数第二个 滚不到底部
+                */
+                this.$nextTick(() => {
+                    let list = this.$refs.messagesList;
+                    list.scrollTop = list.scrollHeight;
+                })
+            }
         }
     }
 </script>
@@ -159,7 +212,6 @@
     .chat-card {
         width: 77%;
         float: left;
-        // height: 80vh;
         padding-bottom: 16px;
 
         .card-header {
@@ -171,7 +223,9 @@
         .messages-box {
             width: 100%;
             border: @1px-border;
-            min-height: 40vh;
+            height: 40vh;
+            overflow-x: hidden;
+            overflow-y: hidden;
         }
 
         .newMessageFrom {
