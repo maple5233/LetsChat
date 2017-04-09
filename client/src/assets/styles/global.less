@@ -13,7 +13,8 @@
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC",
+  "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -27,8 +28,8 @@ ul {
     background: linear-gradient(@deg, fade(@color, @fade), fade(@color, 0));
 }
 
-.background-img(@url, @pos: center) {
-    background-image: url(@url);
+.background-img(@imgUrl, @pos: center) {
+    background-image: url("/@{imgUrl}");
     background-size: cover;
     background-position: @pos;
     background-repeat: no-repeat;

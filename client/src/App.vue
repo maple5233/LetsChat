@@ -1,24 +1,26 @@
 <template>
-  <div id="app">
-    <h1>{{ msg }}</h1>
-  </div>
+    <div id="app">
+        <header-menu></header-menu>
+    </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        msg: 'Use Vue 2.0 Today!'
-      }
-    },
+    import headerMenu from './compoments/headerMenu.vue'
 
-    methods: {
+    export default {
+        data () {
+            return {}
+        },
+        methods: {
+        },
+        components: {
+            headerMenu
+            // footerInfo
+        }
     }
-  }
 </script>
 
 <style>
-  body {
-    font-family: Helvetica, sans-serif;
-  }
+    @import './assets/styles/global.less';
+    @import './assets/styles/normalize.less';
 </style>
