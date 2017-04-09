@@ -1,16 +1,23 @@
 {
   "name": "LetsChat",
-  "description": "A Vue.js project",
+  "description": "A project base on Vue+Vue-router+VueX+Express+MongoDB",
   "author": "2014maple5233@gmail.com",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "webpack-dev-server -d --inline --hot --env.dev",
     "build": "rimraf dist && webpack -p --progress --hide-modules"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "core-js": "^2.4.1",
     "element-ui": "^1.1.2",
-    "vue": "^2.1.8"
+    "less": "^2.7.2",
+    "less-loader": "^4.0.3",
+    "sha1": "^1.1.1",
+    "socket.io": "^1.7.3",
+    "vue": "^2.1.8",
+    "vue-router": "^2.4.0",
+    "vuex": "^2.2.1"
   },
   "engines": {
     "node": ">=6"
