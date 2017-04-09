@@ -29,7 +29,7 @@
         methods: {
             logout: function () {
                 // handleAuth.signout();
-                // this.$router.push('/login');
+                this.$router.push('/login');
             }
         }
     }
