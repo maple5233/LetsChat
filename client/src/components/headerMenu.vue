@@ -5,7 +5,8 @@
             <!-- <div class="sel-menu" v-if="$store.getters.hasLogin"> -->
             <div class="sel-menu">
                 <el-submenu index="1">
-                    <a @click="logout()"><el-menu-item>退出系统</el-menu-item></a>
+                    <el-menu-item index="1-1">{{ userName }}</el-menu-item>
+                    <a @click="logout()"><el-menu-item index="1-2">退出系统</el-menu-item></a>
                 </el-submenu>
             </div>
         </el-menu>
@@ -18,7 +19,9 @@
 
     export default {
         data () {
-            return {}
+            return {
+                userName: '未登录'
+            }
         },
         computed: {
 
