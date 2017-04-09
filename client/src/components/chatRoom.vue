@@ -22,14 +22,14 @@
             </div>
             <!-- 已有内容 -->
             <div class="messages-box">
-
+                <message-item v-for="(message,index) of messages" :key="message._id"
+                :message="message"></message-item>
             </div>
             <!-- 输入框 -->
             <el-form ref="newMessageFrom" :rules="rules" :model="newMessage"
             label-width="0px" class="newMessageFrom">
                 <el-form-item  prop="text">
-                    <el-input type="textarea" spellcheck="false" autocomplete="off" rows="3"
-                v-model="newMessage.text" ></el-input>
+                    <el-input type="textarea" spellcheck="false" v-model="newMessage.text" ></el-input>
                 </el-form-item>
             </el-form>
 
@@ -52,6 +52,8 @@
 </template>
 
 <script>
+    import messageItem from './messageItem.vue'
+
     export default {
         data () {
             return {
@@ -76,7 +78,22 @@
                         message: '长度在 1 到 100 个字符',
                         trigger: 'blur'
                     }]
-                }
+                },
+                messages: [{
+                    _id: 1,
+                    author: '黄河',
+                    headImgSrc: 'https://vuefe.cn/images/logo.png',
+                    isSelf: false,
+                    createTime: new Date(),
+                    text: '233333333333333333333333333333333333333333333333333333333333333333333'
+                },{
+                    _id: 2,
+                    author: '洪继耀',
+                    headImgSrc: 'https://vuefe.cn/images/logo.png',
+                    isSelf: true,
+                    createTime: new Date(),
+                    text: '666666666666666666666666666666666666666666666666666666666666666666666'
+                }]
             }
         },
         methods: {
@@ -88,6 +105,7 @@
             }
         },
         components: {
+            messageItem
         }
     }
 </script>
@@ -141,7 +159,8 @@
     .chat-card {
         width: 77%;
         float: left;
-        min-height: 80vh;
+        // height: 80vh;
+        padding-bottom: 16px;
 
         .card-header {
             font-size: 18px;
@@ -162,7 +181,6 @@
         .send-message {
             float: right;
             width: 120px;
-            margin-bottom: 16px;
         }
 
     }

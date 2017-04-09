@@ -26,6 +26,16 @@ Vue.filter('datetime', (str) => {
   return `${year}-${mouth}-${day} ${hour}:${minute}`
 })
 
+Vue.filter('time', (str) => {
+  const date = new Date(str)
+  const year = date.getFullYear()
+  const day = date.getDate().toString().padStart(2, '0')
+  const mouth = (date.getMonth() + 1).toString().padStart(2, '0')
+  const hour = date.getHours().toString().padStart(2, '0')
+  const minute = date.getMinutes().toString().padStart(2, '0')
+  return `${hour}:${minute}`
+})
+
 new Vue({
   el: '#app',
   router,

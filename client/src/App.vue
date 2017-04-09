@@ -4,7 +4,7 @@
         <div class="all-center-flex container">
             <router-view></router-view>
         </div>
-        <footer-info></footer-info>
+        <!-- <footer-info></footer-info> -->
     </div>
 </template>
 
