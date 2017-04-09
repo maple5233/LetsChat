@@ -4,9 +4,14 @@
 import 'core-js'
 // 引入 Vue 相关库
 import Vue from 'vue'
+import Vuex from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+// 其他
+import axios from 'axios'
 import App from './App.vue'
+import router from './router'
+// import store from './store'
 
 Vue.use(ElementUI)
 
@@ -23,5 +28,7 @@ Vue.filter('datetime', (str) => {
 
 new Vue({
   el: '#app',
+  router,
+  // store: store,
   render: h => h(App)
 })
