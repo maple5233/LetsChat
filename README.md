@@ -1,2 +1,2 @@
 # LetsChat
-一个基于 ElementUI+VueRouter+Vuex+Socket.IO+Koa2+MongonDB的聊天室
+一个基于`ElementUI` + `Vue-router` + `Vuex` + `Socket.IO` + `Express` + `MongonDB` 的简易聊天室
