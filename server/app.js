@@ -5,11 +5,20 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const debug = require('debug')('LetsChat');
+const mongoose = require('mongoose');
+const app = express();
 
+const config = require('./config');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
-const app = express();
+// 连接数据库
+config.on('error', () => {
+    debug('连接数据库未成功!');
+});
+config.once('open', () => {
+    debug('连接数据库成功!');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
