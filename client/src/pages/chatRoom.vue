@@ -227,7 +227,11 @@
             border: @1px-border;
             height: 40vh;
             overflow-x: hidden;
-            overflow-y: hidden;
+            overflow-y: scroll;
+
+            &::-webkit-scrollbar{
+                display:none;
+            }
         }
 
         .newMessageFrom {
