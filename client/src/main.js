@@ -1,6 +1,4 @@
 // 引入 Polyfills
-// import 'core-js/fn/promise'
-// import 'core-js/fn/string/pad-start'
 import 'core-js'
 // 引入 Vue 相关库
 import Vue from 'vue'
