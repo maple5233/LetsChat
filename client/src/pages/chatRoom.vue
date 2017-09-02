@@ -228,9 +228,11 @@
             height: 40vh;
             overflow-x: hidden;
             overflow-y: scroll;
+            transition: .7s all ease;
+            scroll-behavior: smooth;
 
             &::-webkit-scrollbar{
-                display:none;
+                display: none;
             }
         }
 
