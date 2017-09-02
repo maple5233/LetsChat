@@ -55,7 +55,7 @@
 </template>
 
 <script>
-    import messageItem from './messageItem.vue'
+    import messageItem from './../components/messageItem.vue'
 
     export default {
         data () {

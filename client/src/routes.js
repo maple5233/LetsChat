@@ -1,7 +1,7 @@
 import App from './App.vue'
-import loginBox from './components/loginBox.vue'
-import notFound from './components/notFound.vue'
-import chatRoom from './components/chatRoom.vue'
+import loginBox from './pages/loginBox.vue'
+import notFound from './pages/notFound.vue'
+import chatRoom from './pages/chatRoom.vue'
 
 export default [
 {
