@@ -8,6 +8,10 @@ let MessageSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    room: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room'
+    },
     content: {
         type: String,
         required: true
@@ -32,6 +36,7 @@ MessageSchema.statics = {
         return Message
             .findById(id)
             .populate('author')
+            .populate('room')
             .exec(cb);
     }
 };
