@@ -3,7 +3,7 @@
 const mongoose = require('../config');
 const Schema = mongoose.Schema;
 
-let UserSchema = new Schema({
+const UserSchema = new Schema({
     userName: {
         type: String,
         required: true,

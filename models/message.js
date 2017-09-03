@@ -3,7 +3,7 @@
 const mongoose = require('../config');
 const Schema = mongoose.Schema;
 
-let MessageSchema = new Schema({
+const MessageSchema = new Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -32,7 +32,7 @@ MessageSchema.statics = {
             })
             .exec(cb);
     },
-    fetchOne: function(id, cb) {
+    fetchOne: (id, cb) => {
         return Message
             .findById(id)
             .populate('author')
