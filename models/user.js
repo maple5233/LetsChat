@@ -40,4 +40,5 @@ UserSchema.statics = {
 
 UserSchema.path('userName').required(true, 'User name cannot be blank!');
 
-module.exports = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
