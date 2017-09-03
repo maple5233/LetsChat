@@ -15,6 +15,10 @@ const MessageSchema = new Schema({
     content: {
         type: String,
         required: true
+    },
+    createTime: {
+        type: Date,
+        required: true
     }
 });
 
@@ -37,6 +41,14 @@ MessageSchema.statics = {
             .findById(id)
             .populate('author')
             .populate('room')
+            .exec(cb);
+    },
+    fetchByRoom: (roomId, cb) => {
+        return Message
+            .find({ room: roomId })
+            .populate('author')
+            .populate('room')
+            .sort({ 'createTime' : -1 })
             .exec(cb);
     }
 };
