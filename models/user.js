@@ -29,7 +29,7 @@ UserSchema.statics = {
             })
             .exec(cb);
     },
-    fetchByName: (name, cb)=> {
+    fetchByName: (name, cb) => {
         return User
             .findOne({
                 userName: name
