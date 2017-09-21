@@ -7,11 +7,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 // 其他
 import axios from 'axios'
+import VueSocketio from 'vue-socket.io'
 import App from './App.vue'
 import router from './router'
 // import store from './store'
 
 Vue.use(ElementUI)
+Vue.use(VueSocketio, 'http://localhost:8082')
 
 // 定义时间过滤器
 Vue.filter('datetime', (str) => {

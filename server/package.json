@@ -16,6 +16,10 @@
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",
     "sha1": "^1.1.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "webpack-dev-middleware": "^1.12.0"
   }
 }

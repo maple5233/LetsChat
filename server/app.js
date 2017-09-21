@@ -9,6 +9,31 @@ const mongoose = require('mongoose');
 const app = express();
 const httpServer = require('http').createServer(app);
 const io = require('socket.io').listen(httpServer);
+const webpack = require('webpack');
+const webpackMiddleware = require("webpack-dev-middleware");
+app.use(webpackMiddleware(webpack({
+    entry: "...",
+    output: {
+        path: "/"
+    }
+}), {
+    noInfo: false,
+    quiet: false,
+    lazy: true,
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: true
+    },
+    publicPath: "/public/",
+    index: "index.html",
+    headers: { "X-Custom-Header": "yes" },
+    mimeTypes: { "text/html": [ "phtml" ] },
+    stats: {
+        colors: true
+    },
+    reporter: null,
+    serverSideRender: false,
+}));
 
 const Message = require('./models/message.js');
 const Room = require('./models/Room.js');
@@ -31,6 +56,12 @@ config.once('open', () => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', "http://" + req.headers.host);
+        next();
+    }
+);
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,6 +72,7 @@ app.use('/', index);
 app.use('/users', users);
 
 const onlineUsers = {}; //存储在线用户列表的对象
+
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
