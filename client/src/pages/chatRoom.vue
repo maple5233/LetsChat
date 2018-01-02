@@ -95,18 +95,18 @@
                 },
                 messages: [{
                     _id: 1,
-                    author: '黄河',
-                    headImgSrc: 'https://vuefe.cn/images/logo.png',
-                    isSelf: false,
-                    createTime: new Date(),
-                    text: '233333333333333333333333333333333333333333333333333333333333333333333'
-                },{
-                    _id: 2,
                     author: '洪继耀',
                     headImgSrc: 'https://vuefe.cn/images/logo.png',
                     isSelf: true,
                     createTime: new Date(),
                     text: '666666666666666666666666666666666666666666666666666666666666666666666'
+                },{
+                    _id: 2,
+                    author: '黄河',
+                    headImgSrc: 'https://vuefe.cn/images/logo.png',
+                    isSelf: false,
+                    createTime: new Date(),
+                    text: '233333333333333333333333333333333333333333333333333333333333333333333'
                 }]
             }
         },
